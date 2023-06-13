@@ -1,0 +1,32 @@
+version: "3.7"
+
+services:
+  database_listmarket:
+    image: postgres
+    container_name: database_listmarket
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=docker
+      - POSTGRES_PASSWORD=listmarket
+      - POSTGRES_DB=listmarket
+    volumes:
+      - pgdata:/data/postgres
+  app:
+    build: .
+    container_name: listmarket
+    ports:
+      - 3333:3333
+    volumes:
+      - .:/usr/app
+    links:
+      - database_listmarket
+    depends_on:
+      - database_listmarket
+
+      
+
+
+volumes:
+  pgdata:
+    driver: local

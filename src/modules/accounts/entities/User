@@ -1,0 +1,17 @@
+// import { Entity, PrimaryColumn } from "typeorm";
+
+
+// class User {
+//     constructor(){}
+
+//     @PrimaryColumn()
+//     user_id: string;
+
+//     name: string;
+
+//     password: string;
+
+//     email: string
+// }
+
+// export {User}
