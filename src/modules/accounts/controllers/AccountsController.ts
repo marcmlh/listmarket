@@ -5,11 +5,11 @@ import { DefaultResponse } from "../../../global/DefaultReponse";
 
 export class AccountsController {
   async create(request: Request, response: Response): Promise<Response> {
-    const { name, password, email } = request.body;
+    const { user_name, password, email } = request.body;
 
     const accountsService = container.resolve(AccountsService);
 
-    const user = await accountsService.create(name, password, email);
+    const user = await accountsService.create(user_name, password, email);
 
     return response.status(201).json(new DefaultResponse(user, true, 201));
   }
@@ -38,11 +38,21 @@ export class AccountsController {
 
   async update(request: Request, response: Response): Promise<Response> {
     const { name, password, email } = request.body;
-    const { user_id }  = request.params;
+    const { user_id } = request.params;
 
     const accountsService = container.resolve(AccountsService);
 
     const user = await accountsService.update(user_id, name, password, email);
+
+    return response.status(200).json(new DefaultResponse(user, true, 200));
+  }
+
+  async authenticate(request: Request, response: Response): Promise<Response> {
+    const { email, password } = request.body;
+
+    const accountsService = container.resolve(AccountsService);
+
+    const user = await accountsService.authenticate(email, password);
 
     return response.status(200).json(new DefaultResponse(user, true, 200));
   }

@@ -9,9 +9,9 @@ export class AccountsRepository {
     this.repository = dataSource.getRepository(Users);
   }
 
-  async create(name: string, password: string, email: string): Promise<Users> {
+  async create(user_name: string, password: string, email: string): Promise<Users> {
     const user = this.repository.create({
-      name,
+      user_name,
       password,
       email,
     });
@@ -30,14 +30,14 @@ export class AccountsRepository {
   await this.repository.delete( {email} );
   }
 
-  async update(id: string, name: string, password: string, email: string): Promise<Users> {
+  async update(user_id: string, user_name: string, password: string, email: string): Promise<Users> {
     const user = this.repository.create({
-      name,
+      user_name,
       password,
       email,
     });
 
-    await this.repository.update(id,user);
+    await this.repository.update(user_id,user);
 
     return user;
   }

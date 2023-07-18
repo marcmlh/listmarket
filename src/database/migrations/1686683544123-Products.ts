@@ -12,7 +12,7 @@ export class Products1686683544123 implements MigrationInterface {
             isPrimary: true,
           },
           {
-            name: "productName",
+            name: "product_name",
             type: "varchar",
           },
           {
@@ -26,6 +26,7 @@ export class Products1686683544123 implements MigrationInterface {
           {
             name: "description",
             type: "varchar",
+            isNullable:true
           },
         ],
       })

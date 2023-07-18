@@ -2,7 +2,7 @@ import { Column, Entity, PrimaryColumn } from "typeorm";
 import {v4 as uuidV4} from "uuid"
 
 @Entity("Users")
-class Users {
+export class Users {
     constructor(){
         if (!this.user_id){
             this.user_id = uuidV4()
@@ -13,7 +13,7 @@ class Users {
     user_id: string;
 
     @Column()
-    name: string;
+    user_name: string;
     
     @Column()
     password: string;
@@ -21,5 +21,3 @@ class Users {
     @Column()
     email: string
 }
-
-export {Users}

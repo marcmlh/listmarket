@@ -7,6 +7,7 @@ import swaggerFile from "./swagger.json";
 import { createConnection } from "./database/data-source";
 import { DefaultResponse } from "./global/DefaultReponse";
 import { routes } from "./routes";
+import { ZodError } from "zod";
 
 const app = express();
 
@@ -19,6 +20,10 @@ app.use(routes);
 app.use((error, request: Request, response: Response, next: NextFunction) => {
   if (error instanceof DefaultResponse) {
     return response.status(error.status).json(error);
+  }
+
+  if(error instanceof ZodError){
+     return response.status(400).json(error.format())
   }
 
   return response.status(500).json({
